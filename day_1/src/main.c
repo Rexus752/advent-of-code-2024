@@ -19,6 +19,7 @@ int main() {
     char *buffer = (char *)malloc(MAX_STRING_SIZE);
     if (!buffer) {
         fprintf(stderr, "error: memory allocation failed\n");
+        fclose(file);
         exit(EXIT_FAILURE);
     }
 
@@ -26,7 +27,6 @@ int main() {
     while (fgets(buffer, MAX_STRING_SIZE, file)) {
         inputs++;
     }
-    rewind(file);
 
     printf("Number of inputs for each array: %d\n", inputs);
 
@@ -34,6 +34,7 @@ int main() {
     int *right_array = (int *)malloc(inputs * sizeof(int));
     if (!left_array || !right_array) {
         fprintf(stderr, "error: memory allocation failed\n");
+        fclose(file);
         exit(EXIT_FAILURE);
     }
 
